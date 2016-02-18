@@ -18,6 +18,15 @@ public class Main
 
 		OtherCustomers otherCustomers = applicationContext.getBean("otherCustomers", OtherCustomers.class);
 		System.out.println(otherCustomers);
+
+		Car car = applicationContext.getBean("car", Car.class);
+		System.out.println(car);
+
+		ListInjectionImpl listInjection = applicationContext.getBean("listInjection", ListInjectionImpl.class);
+		System.out.println(listInjection);
+
+		((ClassPathXmlApplicationContext)applicationContext).close();
+
 	}
 
 }

@@ -24,6 +24,38 @@
 		<constructor-arg name="phone" ref="phone" />
 	</bean>
 	
+	<!-- idref -->
+	<bean id="car" class="com.alicankustemur.spring.Car">
+		<property name="model" value="Mercedes-Benz" ></property>
+		<property name="customer" ref="customer" />
+	</bean>
 	
-
+	<!-- List Injection -->
+	<bean id="listInjection" class="com.alicankustemur.spring.ListInjectionImpl">
+	<property name="carList">
+		<list>
+			<ref bean="fiesta" />
+			<ref bean="clio" />
+		</list>
+	</property>
+	</bean>
+	
+	<bean id="customer1" class="com.alicankustemur.spring.Customer">
+		<constructor-arg name="name" value="Büşra" />
+	</bean>
+	
+	<bean id="customer2" class="com.alicankustemur.spring.Customer">
+		<constructor-arg name="name" value="Özcan" />
+	</bean>
+	
+	<bean id="fiesta" class="com.alicankustemur.spring.Car" >
+		<property name="model" value="ford" ></property>
+		<property name="customer" ref="customer1"/>
+	</bean>
+	
+	<bean id="clio" class="com.alicankustemur.spring.Car" >
+		<property name="model" value="renault" ></property>
+		<property name="customer" ref="customer2"/>
+	</bean>
+	
 </beans>
