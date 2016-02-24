@@ -4,58 +4,28 @@
 			http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context 
 		http://www.springframework.org/schema/context/spring-context-3.1.xsd">
-	
-	
-	<!-- Dependecy Injection with Setter Methods -->
-	<bean id="phone" class="com.alicankustemur.spring.Phone">
-		<property name="brand" value="iPhone"/>
-		<property name="model" value="4S"/>
-		<property name="modelYear" value="2015"/>
-	</bean>
-	
-	<!-- Dependecy Injection with Constructor -->
-	<bean id="customer" class="com.alicankustemur.spring.Customer">
-		<constructor-arg name="name" value="Ali Can" />
-	</bean>
-	
-	<!-- Dependecy Injection with Constructor and ref  -->
-	<bean id="otherCustomers" class="com.alicankustemur.spring.OtherCustomers">
-		<constructor-arg name="name" value="Ali Can" />
-		<constructor-arg name="phone" ref="phone" />
-	</bean>
+
+	<context:annotation-config />
+	<context:component-scan base-package="com.alicankustemur.spring" />
+
+
+	<import resource="model.xml" />
+
+	<import resource="list.xml" />
+
+	<import resource="method.xml" />
+
+	<import resource="properties.xml" />
+
+	<import resource="spel.xml" />
 	
 	<!-- idref -->
 	<bean id="car" class="com.alicankustemur.spring.Car">
-		<property name="model" value="Mercedes-Benz" ></property>
+		<property name="model" value="Mercedes-Benz"></property>
 		<property name="customer" ref="customer" />
 	</bean>
 	
-	<!-- List Injection -->
-	<bean id="listInjection" class="com.alicankustemur.spring.ListInjectionImpl">
-	<property name="carList">
-		<list>
-			<ref bean="fiesta" />
-			<ref bean="clio" />
-		</list>
-	</property>
-	</bean>
-	
-	<bean id="customer1" class="com.alicankustemur.spring.Customer">
-		<constructor-arg name="name" value="Büşra" />
-	</bean>
-	
-	<bean id="customer2" class="com.alicankustemur.spring.Customer">
-		<constructor-arg name="name" value="Özcan" />
-	</bean>
-	
-	<bean id="fiesta" class="com.alicankustemur.spring.Car" >
-		<property name="model" value="ford" ></property>
-		<property name="customer" ref="customer1"/>
-	</bean>
-	
-	<bean id="clio" class="com.alicankustemur.spring.Car" >
-		<property name="model" value="renault" ></property>
-		<property name="customer" ref="customer2"/>
-	</bean>
-	
+	<!-- Factory Method -->
+	<bean id="dbSingleton" class="com.alicankustemur.spring.DBSingleton" factory-method="getInstance" />
+
 </beans>

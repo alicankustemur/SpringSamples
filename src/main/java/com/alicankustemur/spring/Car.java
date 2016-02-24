@@ -2,6 +2,7 @@ package com.alicankustemur.spring;
 
 public class Car
 {
+
 	private String		model;
 	private Customer	customer;
 

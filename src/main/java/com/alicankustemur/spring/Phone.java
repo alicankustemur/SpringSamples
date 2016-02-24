@@ -42,4 +42,9 @@ public class Phone
 		return "Phone [brand=" + brand + ", model=" + model + ", modelYear=" + modelYear + "]";
 	}
 
+	public void foo()
+	{
+		System.out.println(true);
+	}
+
 }

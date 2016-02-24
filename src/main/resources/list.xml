@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx" xmlns:p="http://www.springframework.org/schema/p" xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="
+   http://www.springframework.org/schema/beans 
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+   http://www.springframework.org/schema/util 
+   http://www.springframework.org/schema/util/spring-util-3.0.xsd
+   http://www.springframework.org/schema/context
+   http://www.springframework.org/schema/context/spring-context-3.1.xsd
+   http://www.springframework.org/schema/tx
+   http://www.springframework.org/schema/tx/spring-tx.xsd"
+   xmlns:c="http://www.springframework.org/schema/c">
+
+
+<!-- List Injection -->
+	<bean id="listInjection" class="com.alicankustemur.spring.ListInjectionImpl">
+		<property name="carList">
+			<list>
+				<ref bean="fiesta" />
+				<ref bean="clio" />
+			</list>
+		</property>
+	</bean>
+		
+	<!-- List Injection   -->
+	<bean id="customer1" class="com.alicankustemur.spring.Customer"
+		c:name="Büşra"
+	/>
+
+	<bean id="customer2" class="com.alicankustemur.spring.Customer"
+		c:name="Özcan"
+	/>
+
+	<bean id="fiesta" class="com.alicankustemur.spring.Car"
+		p:model="ford"
+		p:customer-ref="customer1"
+	/>
+
+	<bean id="clio" class="com.alicankustemur.spring.Car"
+		p:model="renault"
+		p:customer-ref="customer2"
+	/>
+	
+	<bean id="testCar" class="com.alicankustemur.spring.Car">
+		<property name="model">
+			<util:property-path path="clio.model"/>
+		</property>
+		<property name="customer" ref="customer2"/>
+	</bean>
+
+</beans>
